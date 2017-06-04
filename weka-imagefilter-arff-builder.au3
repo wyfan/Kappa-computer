@@ -27,7 +27,9 @@ Func buildArff($path)
 				  ;MsgBox($MB_SYSTEMMODAL, $filePath, $aPathSplit[4])
 				  ; 要取得分類名稱才行呢
 				  Local $splitor = "_"
-				  If StringInStr($aPathSplit[3], " ") > 0 Then
+				  If StringInStr($aPathSplit[3], "_") > 0 Then
+					 $splitor = "_"
+				  ElseIf StringInStr($aPathSplit[3], " ") > 0 Then
 					 ; 將檔案名稱中的空白刪除
 					 Local $newName = StringReplace($aFileList[$f], " ", "_")
 					 ;MsgBox($MB_SYSTEMMODAL, $aFileList[$f], $newName)
