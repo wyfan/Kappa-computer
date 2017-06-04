@@ -26,7 +26,19 @@ Func buildArff($path)
 			   If $aPathSplit[4] == ".jpg" Or $aPathSplit[4] == ".png" Or $aPathSplit[4] == ".gif" Or $aPathSplit[4] == ".bmp" Then
 				  ;MsgBox($MB_SYSTEMMODAL, $filePath, $aPathSplit[4])
 				  ; 要取得分類名稱才行呢
-				  Local $class = $oSC.eval("'" & $aPathSplit[3] & "'.substr(0, '" & $aPathSplit[3] & "'.lastIndexOf('_'))")
+				  Local $splitor = "_"
+				  If StringInStr($aPathSplit[3], " ") > 0 Then
+					 ; 將檔案名稱中的空白刪除
+					 Local $newName = StringReplace($aFileList[$f], " ", "_")
+					 ;MsgBox($MB_SYSTEMMODAL, $aFileList[$f], $newName)
+					 FileMove($path & "/" & $aFileList[$f], $path & "/" & $newName)
+					 $filePath = $path & "/" & $newName
+					 $aPathSplit = _PathSplit($filePath, $sDrive, $sDir, $sFileName, $sExtension)
+					 $splitor = "_"
+				  ElseIf StringInStr($aPathSplit[3], "-") > 0 Then
+					 $splitor = "-"
+				  EndIf
+				  Local $class = $oSC.eval("'" & $aPathSplit[3] & "'.substr(0, '" & $aPathSplit[3] & "'.lastIndexOf('" & $splitor & "'))")
 				  ;MsgBox($MB_SYSTEMMODAL, $filePath, $class)
 
 
