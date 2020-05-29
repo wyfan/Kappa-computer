@@ -14,14 +14,67 @@
     <script>less = {env: 'production'};</script>
     <script src="vendors/less/less.min.js"></script>
 
-    <link rel="stylesheet" href="html-lib/vendors/semantic-ui/semantic.min.css" />
-    <script src="html-lib/vendors/semantic-ui/semantic.min.js"></script>
+    <link rel="stylesheet" href="vendors/semantic-ui/semantic.min.css" />
+    <script src="vendors/semantic-ui/semantic.min.js"></script>
   </head>
   <body>
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <input type="file" id="files" name="files" multiple>
-    <script src="" async defer></script>
+    <div class="ui container">
+      <form id="app" class="ui form">
+        <button type="button" class="ui fluid button">
+          SELECT IMAGE FILES
+        </button>
+        <input type="file" id="files" name="images"
+          accept="image/png, image/jpeg" multiple>
+        
+          <div class="ui centered card">
+            <div class="content">
+              <div class="header">Download</div>
+              <div class="description">
+                <div class="ui fluid input">
+                  <input type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="ui bottom attached button">
+              <i class="download icon"></i>
+              Download
+            </div>
+          </div>
+
+        <table class="ui table">
+          <thead>
+            <tr>
+              <th>
+                Class
+              </th>
+              <th>
+                Count
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                OWL
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+            <tr>
+              <td>
+                OWL
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
   </body>
 </html>
