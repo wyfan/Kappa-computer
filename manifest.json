@@ -21,7 +21,7 @@
       "name": "Open Blog",
       "short_name": "布丁布丁吃什麼？",
       "description": "Author's Blog",
-      "url": "https://blog.pulipuli.info",
+      "url": "./b.html",
       "icons": [
         { 
           "src": "blog-icon.jpg", 
