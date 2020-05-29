@@ -40,8 +40,12 @@ var appMethods = {
       return filename.slice(0, pos).trim()
     }
   },
-  downloadARFF () {
-    var blob = new Blob([this.arffOutput], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, this.downloadFilename + '.arff', true);
+  downloadTrainARFF () {
+    let blob = new Blob([this.arffTrainOutput], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, this.downloadFilename + '-train.arff', true);
+  },
+  downloadUnknownARFF () {
+    let blob = new Blob([this.arffUnknownOutput], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, this.downloadFilename + '-unknown.arff', true);
   }
 }

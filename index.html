@@ -4,10 +4,11 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
+    <link rel="manifest" href="/news/manifest.json"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/png" href="icon.png" />
-    <title>weka-imagefilter-arff-builder</title>
+    <title>Weka ImageFitler ARFF Builder</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,6 +30,11 @@
     <![endif]-->
     <div class="ui centered container">
       <form id="app" class="ui form centered grid">
+        <h1>
+          <a href="//blog.pulipuli.info/2017/06/wekaimagefilter-extract-features-from.html" target="_blank">
+            Weka ImageFitler ARFF Builder
+          </a>
+        </h1>
         <div class="row">
           <div class="centered aligned column">
             <div class="ui centered input select-button">
@@ -36,6 +42,7 @@
                 type="button" 
                 class="ui button"
                 v-on:click="$refs.files.click()">
+                <i class="open folder icon"></i>
                 SELECT IMAGE FILES
               </button>
             </div>
@@ -82,6 +89,19 @@
           </div>
         </div>
         
+        <div class="one column centered row">
+          <div class="centered column separation-column">
+            <div class="field">
+              <label>Unknown Class Name</label>
+              <input type="text" 
+                     name="unknownClassName" 
+                     placeholder="unknown"
+                     v-model="unknownClassName"
+                     />
+            </div>
+          </div>
+        </div>
+        
         <input 
           type="file" 
           ref="files" 
@@ -103,16 +123,19 @@
                   type="text"
                   v-model="filename"
                   v-bind:placeholder="filenamePlaceholder"/>
-                <div class="ext">
-                  .arff
-                </div>
               </div>
             </div>
           </div>
-          <div class="ui bottom attached button"
-               v-on:click="downloadARFF">
-            <i class="download icon"></i>
-            Download
+          <div class="ui bottom attached buttons">
+            <div class="ui button" 
+                 v-on:click="downloadTrainARFF">
+              Train Dataset
+            </div>
+            <div class="ui button" 
+                 v-if="hasUnknownClassName "
+                 v-on:click="downloadUnknownARFF">
+              Unknown Dataset
+            </div>  
           </div>
         </div>
           </div>

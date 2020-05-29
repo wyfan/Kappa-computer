@@ -11,6 +11,5 @@ var appWatch = {
     
     this.filename = 'images-' + shortNames.join('_') + '-' + (new Date()).mmddhhmm()
     this.filenamePlaceholder = this.filename
-
   }
 }

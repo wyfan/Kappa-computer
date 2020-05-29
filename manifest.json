@@ -1,0 +1,22 @@
+{
+  "name": "Weka ImageFilter ARFF Builder",
+  "short_name": "WekaImageFilter",
+  "start_url": ".",
+  "display": "minimal-ui",
+  "background_color": "#fff",
+  "description": "A tool to let you select image files to build ARFF file.",
+  "icons": [{
+    "src": "icon",
+    "sizes": "256x256",
+    "type": "image/png"
+  }],
+   "shortcuts": [
+    {
+      "name": "Open Blog",
+      "short_name": "布丁布丁吃什麼？",
+      "description": "Author's Blog",
+      "url": "https://blog.pulipuli.info",
+      "icons": [{ "src": "blog-icon.jpg", "sizes": "195x195" }]
+    }
+  ]
+}
