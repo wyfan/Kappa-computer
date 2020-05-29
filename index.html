@@ -4,7 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
-    <link rel="manifest" href="/news/manifest.json"/>
+    <link rel="manifest" href="manifest.json"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/png" href="icon.png" />
@@ -116,7 +116,10 @@
         <div class="ui centered card"
              v-if="classCount.length > 0">
           <div class="content">
-            <div class="header">Download</div>
+            <div class="header">
+              <i class="download icon"></i>
+              Download
+            </div>
             <div class="description">
               <div class="ui fluid input">
                 <input 
