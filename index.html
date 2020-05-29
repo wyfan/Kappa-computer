@@ -18,6 +18,8 @@
     <script src="vendors/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="vendors/semantic-ui/semantic.min.css" />
     <script src="vendors/semantic-ui/semantic.min.js"></script>
+
+    <script src="vendors/vue/vue.min.js"></script>
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -25,28 +27,43 @@
     <![endif]-->
     <div class="ui centered container">
       <form id="app" class="ui form">
-        <button type="button" class="ui fluid button">
-          SELECT IMAGE FILES
-        </button>
-        <input type="file" id="files" name="images"
-          accept="image/png, image/jpeg" multiple>
-        
-          <div class="ui centered card">
-            <div class="content">
-              <div class="header">Download</div>
-              <div class="description">
-                <div class="ui fluid input">
-                  <input type="text" />
-                </div>
+        <div class="ui fluid centered input">
+          <button 
+            type="button" 
+            class="ui button select-button"
+            v-on:click="$refs.files.click()">
+            SELECT IMAGE FILES
+          </button>
+        </div>
+
+        <input 
+          type="file" 
+          ref="files" 
+          name="images"
+          accept="image/png, image/jpeg" 
+          v-on:change="onFileInputChange"
+          multiple />
+
+        <div class="ui centered card"
+             v-if="selectFileNameList.length > 0">
+          <div class="content">
+            <div class="header">Download</div>
+            <div class="description">
+              <div class="ui fluid input">
+                <input 
+                  type="text"
+                  v-model="filename" />
               </div>
             </div>
-            <div class="ui bottom attached button">
-              <i class="download icon"></i>
-              Download
-            </div>
           </div>
+          <div class="ui bottom attached button">
+            <i class="download icon"></i>
+            Download
+          </div>
+        </div>
 
-        <table class="ui compact collapsing unstackable table count-table">
+        <table class="ui compact collapsing unstackable table count-table"
+               v-if="selectFileNameList.length > 0">
           <thead>
             <tr>
               <th>
@@ -58,25 +75,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr v-for="classItem in classCount">
               <td>
-                OWL
+                {{ classItem.className }}
               </td>
               <td>
-                12
-              </td>
-            </tr>
-            <tr>
-              <td>
-                OWL
-              </td>
-              <td>
-                12
+                {{ classItem.count }}
               </td>
             </tr>
           </tbody>
         </table>
       </form>
     </div>
+
+    <script src="scripts/vue-app-data.js"></script>
+    <script src="scripts/vue-app-mounted.js"></script>
+    <script src="scripts/vue-app-computed.js"></script>
+    <script src="scripts/vue-app-watch.js"></script>
+    <script src="scripts/vue-app-methods.js"></script>
+
+    <script src="scripts/vue-app.js"></script>
+    <script src="scripts/ga.js"></script>
+
   </body>
 </html>

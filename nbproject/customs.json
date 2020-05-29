@@ -1,0 +1,20 @@
+{
+  "elements": {},
+  "attributes": {
+    "ref": {
+      "context": "input"
+    },
+    "v-if": {
+      "context": "table"
+    },
+    "v-on:click": {
+      "context": "button"
+    },
+    "v-for": {
+      "context": "tr"
+    },
+    "v-model": {
+      "context": "input"
+    }
+  }
+}
