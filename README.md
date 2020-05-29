@@ -10,3 +10,5 @@ https://pulipulichen.github.io/weka-imagefilter-arff-builder/weka/mnist_set.zip
 https://pulipulichen.github.io/weka-imagefilter-arff-builder/weka/mnist_set_mini.zip
 
 https://pulipulichen.github.io/weka-imagefilter-arff-builder/weka-imagefilter-arff-builder.exe
+
+https://ppt.cc/foWy7x

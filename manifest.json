@@ -1,8 +1,8 @@
 {
   "name": "Weka ImageFilter ARFF Builder",
   "short_name": "WekaImageFilter",
-  "start_url": ".",
-  "display": "minimal-ui",
+  "start_url": "./index.html",
+  "display": "standalone",
   "background_color": "#fff",
   "description": "A tool to let you select image files to build ARFF file.",
   "icons": [{
