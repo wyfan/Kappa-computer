@@ -20,50 +20,105 @@
     <script src="vendors/semantic-ui/semantic.min.js"></script>
 
     <script src="vendors/vue/vue.min.js"></script>
+    <script src="vendors/date-helper.js"></script>
+    <script src="vendors/jszip/FileSaver.min.js"></script>
   </head>
   <body>
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="ui centered container">
-      <form id="app" class="ui form">
-        <div class="ui fluid centered input">
-          <button 
-            type="button" 
-            class="ui button select-button"
-            v-on:click="$refs.files.click()">
-            SELECT IMAGE FILES
-          </button>
+      <form id="app" class="ui form centered grid">
+        <div class="row">
+          <div class="centered aligned column">
+            <div class="ui centered input select-button">
+              <button 
+                type="button" 
+                class="ui button"
+                v-on:click="$refs.files.click()">
+                SELECT IMAGE FILES
+              </button>
+            </div>
+          </div>
         </div>
-
+        
+        <div class="one column centered row">
+          <div class="centered column separation-column">
+            <div class="inline centered fields separation-fields">
+              <label>Separation</label>
+              <div class="field">
+                <div class="ui fitted checked checkbox">
+                  <input 
+                    type="checkbox" 
+                    checked=""
+                    value="_"
+                    v-model="separationList">
+                  <label class="underline-separation">
+                    _
+                  </label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui checked checkbox">
+                  <input 
+                    type="checkbox" 
+                    checked=""
+                    value="-"
+                    v-model="separationList">
+                  <label>-</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui checked checkbox">
+                  <input 
+                    type="checkbox" 
+                    checked=""
+                    value=" "
+                    v-model="separationList">
+                  <label>(Space)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <input 
           type="file" 
           ref="files" 
           name="images"
-          accept="image/png, image/jpeg" 
+          accept="image/jpeg" 
           v-on:change="onFileInputChange"
           multiple />
 
+        <div class="row">
+          <div class="column">
+            
         <div class="ui centered card"
-             v-if="selectFileNameList.length > 0">
+             v-if="classCount.length > 0">
           <div class="content">
             <div class="header">Download</div>
             <div class="description">
               <div class="ui fluid input">
                 <input 
                   type="text"
-                  v-model="filename" />
+                  v-model="filename"
+                  v-bind:placeholder="filenamePlaceholder"/>
+                <div class="ext">
+                  .arff
+                </div>
               </div>
             </div>
           </div>
-          <div class="ui bottom attached button">
+          <div class="ui bottom attached button"
+               v-on:click="downloadARFF">
             <i class="download icon"></i>
             Download
           </div>
         </div>
-
+          </div>
+        </div>
         <table class="ui compact collapsing unstackable table count-table"
-               v-if="selectFileNameList.length > 0">
+               v-if="classCount.length > 0">
           <thead>
             <tr>
               <th>
