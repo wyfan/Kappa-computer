@@ -9,14 +9,29 @@
     "src": "icon.png",
     "sizes": "256x256",
     "type": "image/png"
-  }],
+  },
+  {
+    "src": "icon144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }
+  ],
    "shortcuts": [
     {
       "name": "Open Blog",
       "short_name": "布丁布丁吃什麼？",
       "description": "Author's Blog",
       "url": "https://blog.pulipuli.info",
-      "icons": [{ "src": "blog-icon.jpg", "sizes": "195x195" }]
+      "icons": [
+        { 
+          "src": "blog-icon.jpg", 
+          "sizes": "195x195" 
+        },
+        { 
+          "src": "blog-icon144.jpg", 
+          "sizes": "144x144" 
+        }
+      ]
     }
   ]
 }
