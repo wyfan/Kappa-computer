@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/png" href="icon.png" />
-    <title>Weka ImageFitler ARFF Builder</title>
+    <title>Kappa Computer</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,15 +31,13 @@
     <div class="ui centered container">
       <form id="app" class="ui form centered grid">
         <h1>
-          <a href="//blog.pulipuli.info/2017/06/wekaimagefilter-extract-features-from.html" target="_blank">
-            Weka ImageFitler ARFF Builder
-          </a>
+            Kappa Computer
         </h1>
         <div class="row">
-          <div class="centered aligned column">
+          <div class="aligned column">
             <div class="ui centered input select-button">
-              <button 
-                type="button" 
+              <button
+                type="button"
                 class="ui button"
                 v-on:click="$refs.files.click()">
                 <i class="open folder icon"></i>
@@ -48,15 +46,15 @@
             </div>
           </div>
         </div>
-        
+
         <div class="one column centered row">
           <div class="centered column separation-column">
             <div class="inline centered fields separation-fields">
               <label>Separation</label>
               <div class="field">
                 <div class="ui fitted checked checkbox">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     checked=""
                     value="_"
                     v-model="separationList">
@@ -67,8 +65,8 @@
               </div>
               <div class="field">
                 <div class="ui checked checkbox">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     checked=""
                     value="-"
                     v-model="separationList">
@@ -77,8 +75,8 @@
               </div>
               <div class="field">
                 <div class="ui checked checkbox">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     checked=""
                     value=" "
                     v-model="separationList">
@@ -88,31 +86,31 @@
             </div>
           </div>
         </div>
-        
+
         <div class="one column centered row">
           <div class="centered column separation-column">
             <div class="field">
               <label>Unknown Class Name</label>
-              <input type="text" 
-                     name="unknownClassName" 
+              <input type="text"
+                     name="unknownClassName"
                      placeholder="unknown"
                      v-model="unknownClassName"
                      />
             </div>
           </div>
         </div>
-        
-        <input 
-          type="file" 
-          ref="files" 
+
+        <input
+          type="file"
+          ref="files"
           name="images"
-          accept="image/jpeg" 
+          accept="image/jpeg"
           v-on:change="onFileInputChange"
           multiple />
 
         <div class="row">
           <div class="column">
-            
+
         <div class="ui centered card"
              v-if="classCount.length > 0">
           <div class="content">
@@ -122,7 +120,7 @@
             </div>
             <div class="description">
               <div class="ui fluid input">
-                <input 
+                <input
                   type="text"
                   v-model="filename"
                   v-bind:placeholder="filenamePlaceholder"/>
@@ -130,15 +128,15 @@
             </div>
           </div>
           <div class="ui bottom attached buttons">
-            <div class="ui button" 
+            <div class="ui button"
                  v-on:click="downloadTrainARFF">
               Train Dataset
             </div>
-            <div class="ui button" 
+            <div class="ui button"
                  v-if="hasUnknownClassName "
                  v-on:click="downloadUnknownARFF">
               Unknown Dataset
-            </div>  
+            </div>
           </div>
         </div>
           </div>
