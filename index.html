@@ -35,17 +35,14 @@
         </h1>
         <div class="row">
           <div class="aligned column">
-            <div class="ui centered input select-button">
-              <button
-                type="button"
-                class="ui button"
-                v-on:click="$refs.files.click()">
-                <i class="open folder icon"></i>
-                SELECT IMAGE FILES
-              </button>
+            <div class="ui skip checked checkbox">
+              <input type="checkbox" id="skipFirstCheck" v-model="checked">
+              <label>Skip first Col & first Row</label>
             </div>
           </div>
         </div>
+
+
 
         <div class="one column centered row">
           <div class="centered column separation-column">
