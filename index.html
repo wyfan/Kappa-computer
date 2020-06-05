@@ -12,10 +12,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet/less" type="text/css" href="styles/styles.less" />
-    <script>less = {env: 'production'};</script>
-    <script src="vendors/less/less.min.js"></script>
-
     <script src="vendors/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="vendors/semantic-ui/semantic.min.css" />
     <script src="vendors/semantic-ui/semantic.min.js"></script>
@@ -36,134 +32,71 @@
         <div class="row">
           <div class="aligned column">
             <div class="ui skip checked checkbox">
-              <input type="checkbox" id="skipFirstCheck" v-model="checked">
+              <input type="checkbox" v-model="skipFirst" />
               <label>Skip first Col & first Row</label>
             </div>
           </div>
         </div>
 
-
-
-        <div class="one column centered row">
-          <div class="centered column separation-column">
-            <div class="inline centered fields separation-fields">
-              <label>Separation</label>
+        <div class="column centered coder row">
+          <div class="ui centered equal width grid">
+            <div class="ui textarea form" v-for="(code, index) in codes">
               <div class="field">
-                <div class="ui fitted checked checkbox">
-                  <input
-                    type="checkbox"
-                    checked=""
-                    value="_"
-                    v-model="separationList">
-                  <label class="underline-separation">
-                    _
-                  </label>
-                </div>
+                <label>Coder {{ (index + 1) }}</label>
+                <textarea v-model="code.code"></textarea>
               </div>
-              <div class="field">
-                <div class="ui checked checkbox">
-                  <input
-                    type="checkbox"
-                    checked=""
-                    value="-"
-                    v-model="separationList">
-                  <label>-</label>
-                </div>
-              </div>
-              <div class="field">
-                <div class="ui checked checkbox">
-                  <input
-                    type="checkbox"
-                    checked=""
-                    value=" "
-                    v-model="separationList">
-                  <label>(Space)</label>
-                </div>
+            </div>
+          </div>
+        </div>
+        <div class="column grid row">
+          <div class="six wide column">
+            <div class="left floated column">
+              <div class="ui primary button added-button">
+                <i class="plus circle icon"></i>
+                Add
               </div>
             </div>
           </div>
         </div>
 
-        <div class="one column centered row">
-          <div class="centered column separation-column">
-            <div class="field">
-              <label>Unknown Class Name</label>
-              <input type="text"
-                     name="unknownClassName"
-                     placeholder="unknown"
-                     v-model="unknownClassName"
-                     />
+        <div class="column grid row">
+          <div class="six wide column">
+            <div class="ui primary button fluid calculation-button" v-on:click="calcKappa">
+              Calc Kappa
             </div>
           </div>
         </div>
 
-        <input
-          type="file"
-          ref="files"
-          name="images"
-          accept="image/jpeg"
-          v-on:change="onFileInputChange"
-          multiple />
-
-        <div class="row">
-          <div class="column">
-
-        <div class="ui centered card"
-             v-if="classCount.length > 0">
-          <div class="content">
-            <div class="header">
-              <i class="download icon"></i>
-              Download
-            </div>
-            <div class="description">
-              <div class="ui fluid input">
-                <input
-                  type="text"
-                  v-model="filename"
-                  v-bind:placeholder="filenamePlaceholder"/>
-              </div>
-            </div>
-          </div>
-          <div class="ui bottom attached buttons">
-            <div class="ui button"
-                 v-on:click="downloadTrainARFF">
-              Train Dataset
-            </div>
-            <div class="ui button"
-                 v-if="hasUnknownClassName "
-                 v-on:click="downloadUnknownARFF">
-              Unknown Dataset
-            </div>
+        <div class="column gird row">
+          <div class="six wide column">
+            <div class="ui divider"></div>
           </div>
         </div>
-          </div>
-        </div>
-        <table class="ui compact collapsing unstackable table count-table"
-               v-if="classCount.length > 0">
+
+        <table class="ui table" v-for="codes in formatedCodes">
           <thead>
             <tr>
-              <th>
-                Class
-              </th>
-              <th>
-                Count
+              <th>participant</th>
+              <th v-for="code in codeArray">
+                {{ code }}
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="classItem in classCount">
-              <td>
-                {{ classItem.className }}
-              </td>
-              <td>
-                {{ classItem.count }}
+            <tr v-for="row in codes">
+              <th>
+                {{ row.participant }}
+              </th>
+              <td v-for="code in codeArray">
+                {{ row.codes[code] }}
               </td>
             </tr>
           </tbody>
         </table>
+
       </form>
     </div>
-
+aaa
     <script src="scripts/vue-app-data.js"></script>
     <script src="scripts/vue-app-mounted.js"></script>
     <script src="scripts/vue-app-computed.js"></script>

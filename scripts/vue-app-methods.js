@@ -1,51 +1,66 @@
 /* global postMessageAPI, XLSX */
 
 var appMethods = {
-  onFileInputChange (event) {
-    //console.log(1);
-    if (!window.FileReader) {
-      return false // Browser is not compatible
-    }
+ calcKappa(event){
+   console.log(this.formatedCodes)
+   console.log(this.compare2Code)
+   return
 
-    //this.processOutputWait = true
-    //var reader = new FileReader()
-    
-    this.selectFileNameList = []
-    let allowTypes = [
-      'image/jpeg'
-    ]
-    
-    for (let i = 0; i < event.target.files.length; i++) {
-      let file = event.target.files[i]
-      let type = file.type
-      let filename = file.name
-      
-      //console.log(type)
-      if (allowTypes.indexOf(type) === -1) {
-        continue
-      }
-      
-      this.selectFileNameList.push(filename)
-    }
-  },
-  parseClassName (filename) {
-    for (let i = 0; i < this.separationList.length; i++) {
-      let separation = this.separationList[i]
+ },
+ parseSplitor (line) {
+   let splitor = '\t'
+   if (line.indexOf(splitor) === -1) {
+     splitor = ' '
+   }
+   if (line.indexOf(splitor) === -1) {
+     splitor = ','
+   }
+   if (line.indexOf(splitor) === -1) {
+     splitor = ';'
+   }
+   return splitor
+ },
+ rowToArray (row) {
+   let splitor = this.parseSplitor(row)
 
-      let pos = filename.indexOf(separation)
-      if (pos === -1) {
-        continue
-      }
+   return row.split(splitor).map((column, i) => {
+     column = column.trim()
 
-      return filename.slice(0, pos).trim()
-    }
-  },
-  downloadTrainARFF () {
-    let blob = new Blob([this.arffTrainOutput], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, this.downloadFilename + '-train.arff', true);
-  },
-  downloadUnknownARFF () {
-    let blob = new Blob([this.arffUnknownOutput], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, this.downloadFilename + '-unknown.arff', true);
-  }
+     // 1 2 3 4
+     // t f e
+     if (isNaN(column)) {
+       return column
+     }
+     else {
+       if (typeof(column) === 'string') {
+       return column
+     }
+       return Number(column)
+     }
+   })
+ },
+ buildEmptyCodeObject () {
+   let colsObject = {}
+   this.codeArray.forEach(code => {
+     colsObject[code] = null
+   })
+   return colsObject
+ },
+ removeFirst(code){
+   console.log(code)
+   let rmfirstrow = code
+
+   for(let i in rmfirstrow){
+     rmfirstrow[i].map((value, index)=>{
+       rmfirstrow[i][index].shift()
+       return rmfirstrow[i][index]
+     })
+     rmfirstrow[i].splice(0,1)
+   }
+   console.log(rmfirstrow)
+    //console.log(rmfirstrow)
+
+   return rmfirstrow
+ }
+
 }

@@ -1,5 +1,4 @@
 /* global appData, appComputed, appWatch, appMethods, appMount */
-
 var app = {
   el: '#app',
   data: appData,
